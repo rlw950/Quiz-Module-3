@@ -26,7 +26,17 @@ function challenge() {
         // var parent = document.getElementById("container");
         // while (parent.hasChildNodes());
         // document.getElementById("container").innerHTML = "";
+        function myFunction() {
+            var myobj = document.getElementById("h2");
+            myobj.remove();
+          }
         document.getElementById("main").innerHTML = "";
+
+        function myFunction() {
+            var myobj = document.getElementById("start");
+            myobj.remove();
+          }
+
 
         var realQuestion = document.createElement('div');
         realQuestion.textContent = questions[i].q;
