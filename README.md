@@ -14,7 +14,7 @@ SO THAT I can gauge my progress compared to my peers
 
 
 # Github Repository
-
+https://github.com/rlw950/Quiz-Module-3
 
 ## Acceptance Criteria
 GIVEN I am taking a code quiz
