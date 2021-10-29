@@ -11,7 +11,7 @@ SO THAT I can gauge my progress compared to my peers
 * Javascript
 
 # Publish Website
-
+https://rlw950.github.io/Quiz-Module-3/
 
 # Github Repository
 https://github.com/rlw950/Quiz-Module-3
