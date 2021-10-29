@@ -7,6 +7,8 @@ var welcomeEl = document.getElementById('welcome')
 var mainEl = document.getElementById('main');
 var timerEl = document.getElementById('countdown');
 var startBtn = document.getElementById('start');
+var answerClick = '';
+var rightAnswer = '';
 
 // The array of questions for the game.
 var questions = [
@@ -21,73 +23,64 @@ var answerList = [
     'strings', 'booleans', 'alerts', 'numbers', 'quotes', 'curly brackets', 'parenthesis', 'square brackets', 'numbers and strings', 'other arrays', 'booleans', 'all of the above', 'commas', 'curly brackets', 'quotes', 'parenthesis', 'JavaScript', 'terminal/bash', 'for loops', 'console.log'
 ];
 
+// 1
+// main countdown timer
+function countDown() {
+    var myobj = document.getElementById("welcome");
+    myobj.remove("welcome");
+    var myobj1 = document.getElementById("start");
+    myobj1.remove("start");
+    document.getElementById("main").innerHTML = "";
+    challenge();
+    var timeLeft = 60;
+    var timeInterval = setInterval(function () {
+        if (timeLeft > 0) {
+            timerEl.textContent = 'Timer: ' + timeLeft;
+            timeLeft--;
 
+            
+            if (answerClick !== rightAnswer) {
+                timeLeft = timeLeft-10;
+            }
+        } else {
+            clearInterval(timeInterval);
+            timerEl.textcontent = 'Game Over';
+        }
+    }, 1000);
+};
+
+// 2
 function challenge() {
-        
-    
-
     var realQuestion = document.createElement('div');
-    // div.setAttribute(id, dvd);
+    realQuestion.setAttribute("id", "main-div");
     realQuestion.textContent = questions[i].q;
     body.appendChild(realQuestion);
     for (let j = 0; j < 4; j++) {
         var button = document.createElement('button');
+        button.classList.add("buttons");
         button.setAttribute('id', j);
         button.textContent = j + 1 + '. ' + answerList[i * 4 + j];
-        body.appendChild(button);
+        var br = document.createElement('br');
+        realQuestion.appendChild(br);
+        realQuestion.appendChild(button);
+        button.addEventListener("click", handleClick);
     }
+};
 
-    myFunction();
-}
-
-function nextQuestion() {
-    var myobj = document.getElementById('div');
-    myobj1.remove("div");
-    var myobj1 = document.getElementById("button");
-    myobj1.remove("button");
-    document.getElementById("main").innerHTML = "";
-    console.log(i);
-    var realQuestion = document.getElementsById('div');
-    
-    realQuestion.textContent = questions[i].q;
-    body.appendChild(realQuestion);
-    for (let j = 0; j < 4; j++) {
-        var button = document.querySelector('button');
-        button.setAttribute('id', j);
-        button.textContent = j + 1 + '. ' + answerList[i * 4 + j];
-        body.appendChild(button);
-    }
-
-    myFunction();
-}
-
-// event listener
-
-function myFunction() {
-    if (document.addEventListener) {
-        document.addEventListener("click", handleClick, false);
-    }
-    else if (document.attachEvent) {
-        document.attachEvent("onclick", handleClick);
-    }
-}
-
-
+// 3
 function handleClick(event) {
     event = event || window.event;
     event.target = event.target || event.srcElement;
 
     var rightAnswer = questions[i].ra;
     var answerClick = event.target.id;
-    
-    console.log(answerClick);
 
     if ('#start' === null) {
         var startEl = document.createElement('div');
         startEl.textContent = '';
         body.appendChild(startEl);
     }
-    
+
     if (answerClick === rightAnswer) {
         // Increase score
         score++;
@@ -99,91 +92,40 @@ function handleClick(event) {
         var wrongEl = document.createElement('div');
         wrongEl.textContent = 'Wrong!';
         body.appendChild(wrongEl);
-        // timeLeft - 10;
+       timeLeft = timeLeft -10;
+       countDown();
         return i++, nextQuestion();
-
     }
+};
 
-}
-
- 
-
-
-
-// main countdown timer
-function countDown() {
-    var myobj = document.getElementById("welcome");
-    myobj.remove("welcome");
-    var myobj1 = document.getElementById("start");
-    myobj1.remove("start");
+// 4
+function nextQuestion() {
+    var myobj = document.getElementById('main-div');
+    myobj.remove("div");
     document.getElementById("main").innerHTML = "";
-    challenge();
-    var timeLeft = 10;
-    var timeInterval = setInterval(function () {
-        if (timeLeft > 0) {
-            timerEl.textContent = 'Timer: ' + timeLeft;
-            timeLeft--;
-            // console.log(timeLeft);
-        } else {
-            clearInterval(timeInterval);
-            timerEl.textcontent = 'Game Over';
-        }
-    }, 1000);
 
-}
+    var realQuestion = document.createElement('div');
+    realQuestion.setAttribute("id", "main-div");
+    realQuestion.textContent = questions[i].q;
+    body.appendChild(realQuestion);
+    for (let j = 0; j < 4; j++) {
+        var button = document.createElement('button');
+        button.setAttribute('id', j);
+        button.textContent = j + 1 + '. ' + answerList[i * 4 + j];
+        var br = document.createElement('br');
+        realQuestion.appendChild(br);
+        realQuestion.appendChild(button);
+        button.addEventListener("click", handleClick);
+    }
+};
 
+// 5
+// function end() {
+//     var myobj = document.getElementById('main-div');
+//     myobj.remove("div");
+//     document.getElementById("main").innerHTML = "";
+// }
 
-// We start the game with a score of 0.
-// var score = 0;
-
-// var challenge = function () {
-// document.write();
-
-// countdown;
-
-// console.log(timerEl);
-
-
-
-// for (var i = 0; i < questions.length; i++) {
-// document.body.innerHTML = '';
-// document.open();
-//console.log(timeLeft);
-// var timerEl = document.createElement('div');
-// timerEl.textContent = timeLeft;
-// timerEl.setAttribute('style', 'margin:auto; width:50%; text-align:right;');
-// body.appendChild(timerEl);
-
-
-
-//     var answerEl = document.createElement('ol');
-
-
-
-// // printer and checker function
-// var checker = function () {
-//     for (var k = 0; k < answerEl.length; k++) {
-//         console.log('k');
-//         var buttons = document.getElementsByClassName('button');
-//         console.log(buttons);
-
-
-//         buttons[k].addEventListener("click", function () {
-
-//             rightAnswer = questions[k].a;
-//             console.log('This is ' + rightAnswer);
-//             var answerClick = this.innerHTML;
-//             console.log('AnswerClick ' + answerClick);
-
-//         });
-
-//         // if (timeLeft === 0 || i === questions.length) {
-
-//         // }
-//     }
-// };
-
-// //   // Show total at end
-// //   alert('You got ' + score + '/' + questions.length);}
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
 startBtn.onclick = countDown;
+
+
